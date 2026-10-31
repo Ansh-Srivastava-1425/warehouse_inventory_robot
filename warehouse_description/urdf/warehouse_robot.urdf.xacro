@@ -20,6 +20,7 @@
   <material name="deck_grey"><color rgba="0.35 0.38 0.42 1.0"/></material>
   <material name="orange"><color rgba="1.0 0.416 0.0 1.0"/></material>
   <material name="tire_black"><color rgba="0.05 0.05 0.05 1.0"/></material>
+  <material name="mast_grey"><color rgba=".75 0.77 0.80 1.0"/></material>
 
   <!-- ===== Inertia helpers ===== -->
   <xacro:macro name="box_inertia" params="m x y z">
@@ -150,6 +151,31 @@
     <parent link="base_link"/>
     <child link="lidar_link"/>
     <origin xyz="0.20 0 0.095" rpy="0 0 0"/>
+  </joint>
+
+    <!-- Scanner mast -->
+  <link name="mast_link">
+    <visual>
+      <geometry>
+        <box size="0.04 0.04 0.80"/>
+      </geometry>
+      <material name="mast_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.04 0.04 0.80"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <xacro:box_inertia m="0.5" x="0.04" y="0.04" z="0.80"/>
+    </inertial>
+  </link>
+
+  <joint name="mast_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="mast_link"/>
+    <origin xyz="-0.20 0 0.47" rpy="0 0 0"/>
   </joint>
 
 </robot>
