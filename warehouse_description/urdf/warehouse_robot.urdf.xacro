@@ -203,4 +203,41 @@
     <axis xyz="0 0 1"/>
     <limit lower="0.0" upper="0.60" effort="100" velocity="0.2"/>
   </joint>
+
+  <!-- Camera -->
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.08 0.03"/>
+      </geometry>
+      <material name="tire_black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.08 0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <xacro:box_inertia m="0.1" x="0.03" y="0.08" z="0.03"/>
+    </inertial>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <parent link="camera_carriage_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0.045 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- IMU -->
+  <link name="imu_link">
+    <inertial>
+      <mass value="0.01"/>
+      <xacro:box_inertia m="0.01" x="0.02" y="0.02" z="0.02"/>
+    </inertial>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+
+  </joint>
 </robot>
