@@ -45,4 +45,14 @@ def generate_launch_description():
         output="screen",
     )
 
-    return LaunchDescription([gz_sim, robot_state_publisher, spawn])
+    bridge_config = PathJoinSubstitution([
+        FindPackageShare("warehouse_gazebo"), "config", "bridge.yaml"
+    ])
+    bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        parameters=[{"config_file": bridge_config, "use_sim_time": True}],
+        output="screen",
+    )
+
+    return LaunchDescription([gz_sim, robot_state_publisher, spawn, bridge])
