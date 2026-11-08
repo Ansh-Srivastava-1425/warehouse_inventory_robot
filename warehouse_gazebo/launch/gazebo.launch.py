@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, AppendEnvironmentVariable, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -13,7 +13,7 @@ def generate_launch_description():
     ])
 
     worlds_file = PathJoinSubstitution([
-        FindPackageShare('warehouse_gazebo'), 'worlds', 'warehouse_empty.sdf'
+        FindPackageShare('warehouse_gazebo'), 'worlds', 'warehouse.sdf'
     ])
 
     robot_description = ParameterValue(
@@ -44,6 +44,7 @@ def generate_launch_description():
                    '-z', '0.05'],
         output='screen',
     )
+    spawn_delayed = TimerAction(period=5.0, actions=[spawn])
 
     bridge_config = PathJoinSubstitution([
         FindPackageShare('warehouse_gazebo'), 'config', 'bridge.yaml'
@@ -54,5 +55,11 @@ def generate_launch_description():
         parameters=[{'config_file': bridge_config, 'use_sim_time': True}],
         output='screen',
     )
+    set_models_path = AppendEnvironmentVariable(
+        'GZ_SIM_RESOURCE_PATH',
+        PathJoinSubstitution([FindPackageShare('warehouse_gazebo'), 'models'])
+    )
 
-    return LaunchDescription([gz_sim, robot_state_publisher, spawn, bridge])
+    return LaunchDescription([
+        set_models_path, gz_sim, robot_state_publisher, spawn_delayed, bridge
+    ])
