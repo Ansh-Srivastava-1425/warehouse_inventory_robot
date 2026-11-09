@@ -72,5 +72,67 @@
   <name>rack_6</name>
   <pose>2.2 1.15 0 0 0 0</pose>
 </include>
+
+<model name="walls">
+  <static>true</static>
+
+  <link name="north_wall">
+    <pose>0 6 1 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>20.2 0.2 2</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry><box><size>20.2 0.2 2</size></box></geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="south_wall">
+    <pose>0 -6 1 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>20.2 0.2 2</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry><box><size>20.2 0.2 2</size></box></geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="east_wall">
+    <pose>10 0 1 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>0.2 12 2</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry><box><size>0.2 12 2</size></box></geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="west_wall">
+    <pose>-10 0 1 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>0.2 12 2</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry><box><size>0.2 12 2</size></box></geometry>
+      <material>
+        <ambient>0.8 0.8 0.8 1</ambient>
+        <diffuse>0.8 0.8 0.8 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
     </world>
 </sdf>
