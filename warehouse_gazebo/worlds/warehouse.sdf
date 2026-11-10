@@ -132,7 +132,53 @@
     </visual>
   </link>
 </model>
+<model name="zones">
+  <static>true</static>
+  <link name="dock_zone">
+    <pose>-8 0 0.01 0 0 0</pose>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>2 2 0.02</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.1 0.8 0.2 1</ambient>
+        <diffuse>0.1 0.8 0.2 1</diffuse>
+      </material>
+    </visual>
+  </link>
 
+  <link name="receiving_zone">
+  <pose>8 3 0.01 0 0 0</pose>
+  <visual name="visual">
+    <geometry>
+      <box>
+        <size>3 3 0.02</size>
+      </box>
+    </geometry>
+    <material>
+      <ambient>0.1 0.4 0.9 1</ambient>
+      <diffuse>0.1 0.4 0.9 1</diffuse>
+    </material>
+  </visual>
+</link>
+
+<link name="dispatch_zone">
+  <pose>8 -3 0.01 0 0 0</pose>
+  <visual name="visual">
+    <geometry>
+      <box>
+        <size>3 3 0.02</size>
+      </box>
+    </geometry>
+    <material>
+      <ambient>0.95 0.8 0.1 1</ambient>
+      <diffuse>0.95 0.8 0.1 1</diffuse>
+    </material>
+  </visual>
+</link>
+</model>
 
     </world>
 </sdf>
