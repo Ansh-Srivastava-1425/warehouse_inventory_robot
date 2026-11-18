@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
+from nav_msgs.msg import Odometry
 import rclpy
 from rclpy.node import Node
-from nav_msgs.msg import Odometry
-from std_msgs.msg import String
 from sensor_msgs.msg import BatteryState
+from std_msgs.msg import String
 
 
 class BatteryNode(Node):
