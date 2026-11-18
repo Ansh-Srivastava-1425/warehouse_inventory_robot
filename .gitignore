@@ -7,3 +7,4 @@ __pycache__/
 *.egg-info/
 *.db
 .env
+warehouse_gazebo/test_rack.sdf
