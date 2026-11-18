@@ -44,6 +44,14 @@ def generate_launch_description():
                    '-z', '0.05'],
         output='screen',
     )
+
+    battery = Node(
+        package='warehouse_gazebo',
+        executable='battery_node.py',
+        name='battery_node',
+        output='screen',
+    )
+
     spawn_delayed = TimerAction(period=5.0, actions=[spawn])
 
     bridge_config = PathJoinSubstitution([
@@ -61,5 +69,5 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        set_models_path, gz_sim, robot_state_publisher, spawn_delayed, bridge
+        set_models_path, gz_sim, robot_state_publisher, spawn_delayed, bridge, battery
     ])
